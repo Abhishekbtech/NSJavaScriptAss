@@ -1,0 +1,7 @@
+// declare your letiables below
+let varA = 42; // Number
+let varB = "Hello, World!"; // String
+let varC = true; // Boolean
+let varD; // Undefined
+let varE = { key: "value" }; // Object
+let varF = Symbol("uniqueSymbol"); // Symbol
