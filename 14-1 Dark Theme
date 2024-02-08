@@ -1,0 +1,24 @@
+Html
+<div id="app" class="day">
+    <p>I am a Newton School student, ready to become an awesome full stack developer</p>
+    <button id="swap" class="button_day" onclick="swapTheme()">Toggle Theme</button>
+</div>
+
+
+js
+function swapTheme() {
+    const appDiv = document.getElementById('app');
+    const swapButton = document.getElementById('swap');
+
+    if (appDiv.classList.contains('day')) {
+        appDiv.classList.remove('day');
+        appDiv.classList.add('night');
+        swapButton.classList.remove('button_day');
+        swapButton.classList.add('button_night');
+    } else {
+        appDiv.classList.remove('night');
+        appDiv.classList.add('day');
+        swapButton.classList.remove('button_night');
+        swapButton.classList.add('button_day');
+    }
+}
