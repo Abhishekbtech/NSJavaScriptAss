@@ -1,0 +1,80 @@
+html
+<label for="colorbox">Change Text Color:</label>
+    <input type="text" id="colorbox" placeholder="Enter color code here">
+    <button id="colorchange" onclick="changeColor()">Change Color</button>
+    <br />
+    <label for="fontsize">Change Font Size:</label>
+    <input type="range" id="fontsize" min="10" max="100" value="55" oninput="changeFontSize(this.value)">
+    <br />
+    <button class="stylebt" id="underline" onclick="toggleStyle('underline')">Underline</button>
+    <button class="stylebt" id="italic" onclick="toggleStyle('italic')">Italic</button>
+    <button class="stylebt" id="bold" onclick="toggleStyle('bold')">Bold</button>
+    <br />
+    <label for="list">Change Font Family:</label>
+    <select id="list" onchange="changeFontFamily()">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+    <br />
+    <button id="getstyle" onclick="getCSSProperties()">Get CSS Properties</button>
+    <br />
+    <p id="css-props"></p>
+    <div class="text-here" id="text-container">This is some example text</div>
+
+
+js
+// javascript code goes here
+function changeColor() {
+    var colorInput = document.getElementById('colorbox').value;
+    document.getElementById('text-container').style.color = colorInput;
+}
+
+let aa=document.getElementById("fontsize").value;
+document.getElementById('text-container').style.fontSize=aa + 'px';
+
+function changeFontSize(size) {
+    document.getElementById('text-container').style.fontSize = size + 'px';
+}
+
+function toggleStyle(style) {
+    var textContainer = document.getElementById('text-container');
+    var currentStyles = textContainer.style.fontWeight + ' ' + textContainer.style.fontStyle + ' ' + textContainer.style.textDecoration;
+
+    switch (style) {
+        case 'underline':
+            textContainer.style.textDecoration = (currentStyles.includes('underline') ? 'none' : 'underline');
+            break;
+        case 'italic':
+            textContainer.style.fontStyle = (currentStyles.includes('italic') ? 'normal' : 'italic');
+            break;
+        case 'bold':
+            textContainer.style.fontWeight = (currentStyles.includes('bold') ? 'normal' : 'bold');
+            break;
+    }
+}
+
+function changeFontFamily() {
+    var fontSelection = document.getElementById('list');
+    var selectedFont = fontSelection.options[fontSelection.selectedIndex].value;
+    document.getElementById('text-container').style.fontFamily = selectedFont;
+}
+
+function getCSSProperties() {
+    var textContainer = document.getElementById('text-container');
+    var cssPropsParagraph = document.getElementById('css-props');
+
+    var cssProperties = {
+        'color': textContainer.style.color,
+        'font-size': textContainer.style.fontSize,
+        'text-decoration': textContainer.style.textDecoration,
+        'font-style': textContainer.style.fontStyle,
+        'font-weight': textContainer.style.fontWeight,
+        'font-family': textContainer.style.fontFamily
+    };
+
+    var cssPropertiesString = Object.entries(cssProperties).map(([property, value]) => `${property}: ${value};`).join(' ');
+    cssPropsParagraph.textContent = cssPropertiesString;
+}
