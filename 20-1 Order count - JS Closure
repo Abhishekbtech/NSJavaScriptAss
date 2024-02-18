@@ -1,0 +1,8 @@
+function generateOrder(number) {
+    let count = 0;
+
+    return function func() {
+        count++;
+        return "Total orders = " + count;
+    };
+}
