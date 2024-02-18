@@ -1,0 +1,35 @@
+// Your code here
+function Employee(name, yearOfJoin, location) {
+    this.name = name;
+    this.yearOfJoin = yearOfJoin;
+    this.location = location;
+
+    let salary;
+
+    this.getEmployeeDetails = function () {
+        return `Name: ${this.name}, Year of Join: ${this.yearOfJoin}, Location: ${this.location}`;
+    };
+
+    this.setSalary = function (amount) {
+        salary = amount;
+    };
+
+    this.getSalary = function () {
+        return salary;
+    };
+}
+
+function createManager(name, yearOfJoin, location, salary) {
+    const manager = new Employee(name, yearOfJoin, location);
+    manager.getManagerDetails = function () {
+        return manager.getEmployeeDetails();
+    };
+
+    manager.getManagerSalary = function () {
+        return manager.getSalary();
+    };
+
+    manager.setSalary(salary);
+
+    return manager;
+}
