@@ -1,0 +1,20 @@
+class Account {
+    static totalAccounts = 0;
+    static totalBalance = 0;
+
+    constructor(accountName, balance) {
+        this.accountName = accountName;
+        this.balance = balance;
+
+        Account.totalAccounts++;
+        Account.totalBalance += balance;
+    }
+
+    static returnTotalAccounts() {
+        return Account.totalAccounts;
+    }
+
+    static returnTotalBalance() {
+        return Account.totalBalance;
+    }
+}
