@@ -1,0 +1,27 @@
+function makeCar(name, wheelCount) {
+    const car = Object.create(vehicle);
+    car.name = name;
+    car.wheelCount = wheelCount;
+    car.type = "Car";
+
+    // Method specific to cars
+    car.drive = function() {
+        console.log(`Car named '${this.name}' is running with ${this.wheelCount} wheels!`);
+    };
+
+    return car;
+}
+
+function makeBike(name, wheelCount) {
+    const bike = Object.create(vehicle);
+    bike.name = name;
+    bike.wheelCount = wheelCount;
+    bike.type = "Bike";
+
+    // Method specific to bikes
+    bike.ride = function() {
+        console.log(`Bike named '${this.name}' is running with ${this.wheelCount} wheels!`);
+    };
+
+    return bike;
+}
