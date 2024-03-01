@@ -1,0 +1,22 @@
+function Appointment(aptDate) {
+    // write your code here
+    this.date = new Date(aptDate);
+    this.location = "";
+
+    // Setter method to set the location
+    this.setLocation = function (newLocation) {
+        this.location = newLocation;
+    };
+
+    // Getter method to get the location
+    this.getLocation = function () {
+        return this.location;
+    };
+
+    // Method to return a string representation of the appointment
+    this.toString = function () {
+        let dateString = this.date.toDateString();
+        return `Appointment on ${dateString} at ${this.location}`;
+    };
+
+}
