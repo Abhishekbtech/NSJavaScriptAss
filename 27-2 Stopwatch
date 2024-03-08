@@ -1,0 +1,60 @@
+HTML
+<div id="time">00:00:00</div>
+<button onclick="start()" id="start">start</button>
+<button onclick="pause()" id="pause" disabled>pause</button>
+<button onclick="stop()" id="stop" disabled >stop</button>
+
+
+JS
+// javascript code goes here
+let startTime;
+let timerInterval;
+let pausedTime = 0;
+let isPaused = false;
+
+function start() {
+    startTime = Date.now() - pausedTime;
+    document.getElementById("start").disabled = true;
+    document.getElementById("pause").disabled = false;
+    document.getElementById("stop").disabled = false;
+    timerInterval = setInterval(updateTime, 1000);
+}
+
+function pause() {
+    if (isPaused) {
+        document.getElementById("pause").innerHTML = "pause";
+        isPaused = false;
+        startTime = Date.now() - pausedTime;
+        timerInterval = setInterval(updateTime, 1000);
+    } else {
+        document.getElementById("pause").innerHTML = "continue";
+        isPaused = true;
+        clearInterval(timerInterval);
+        pausedTime = Date.now() - startTime;
+    }
+}
+
+function stop() {
+    document.getElementById("pause").innerHTML = "pause";
+    clearInterval(timerInterval);
+    document.getElementById("time").innerHTML = "00:00:00";
+    document.getElementById("start").disabled = false;
+    document.getElementById("pause").disabled = true;
+    document.getElementById("stop").disabled = true;
+    pausedTime = 0;
+    isPaused = false;
+}
+
+function updateTime() {
+    const currentTime = Math.floor((Date.now() - startTime) / 1000);
+    const hours = Math.floor(currentTime / 3600);
+    const minutes = Math.floor((currentTime % 3600) / 60);
+    const seconds = currentTime % 60;
+
+    document.getElementById("time").innerHTML =
+        padNumber(hours) + ":" + padNumber(minutes) + ":" + padNumber(seconds);
+}
+
+function padNumber(number) {
+    return number < 10 ? "0" + number : number;
+}
